@@ -2,22 +2,27 @@ import User from "../model/user-schema.js";
 
 export const userSignup = async (request, response) => {
   try {
-    // Check if the username already exists
     const exist = await User.findOne({ username: request.body.username });
     if (exist) {
-      return response.status(401).json({ message: "Username already exists" });
+      return response.status(401).json({ message: "User already exist" });
     }
 
-    // If the username doesn't exist, create a new user
-    const newUser = new User(request.body);
+    const user = request.body;
+    const newUser = new User(user);
+    console.log(newUser);
     await newUser.save();
-    response.status(200).json({ message: "User created successfully" });
+    // console.log("After save", newUser);
+    response
+      .status(200)
+      .json({ message: "User created successfully", user: newUser });
   } catch (error) {
-    if (error.code === 11000) {
-      // Duplicate key error (username already exists)
-      return response.status(400).json({ message: "Usernamee already exists" });
-    }
-    // Other errors
+    // if (error.code === 11000) {
+    //   // Duplicate key error (username already exists)
+    //   return response.status(400).json({ message: "Duplicate data!!" });
+    // }
+    // console.error("Error during user signup:", error);
+    console.error("Error in userSignup:", error.message);
+    console.error("Error stack trace:", error.stack);
     response.status(500).json({ message: error.message });
   }
 };
