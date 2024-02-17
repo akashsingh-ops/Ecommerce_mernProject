@@ -39,8 +39,8 @@ export const Banner = () => {
       itemClass="carousel-item-padding-40-px"
       containerClass="carousel-container"
     >
-      {bannerData.map((data) => (
-        <Image src={data.url} alt="banner" />
+      {bannerData.map((data, index) => (
+        <Image key={index} src={data.url} alt="banner" />
       ))}
     </Carousel>
   );

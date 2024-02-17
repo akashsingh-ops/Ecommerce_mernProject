@@ -1,16 +1,16 @@
 import "./App.css";
 import { Header } from "./components/header/Header";
-import { Box, styled, Typography } from "@mui/material";
-
+import { Box } from "@mui/material";
+import DataProvider from "./context/dataProvider";
 import { HOme } from "./components/home/HOme";
 function App() {
   return (
-    <div>
+    <DataProvider>
       <Header />
       <Box style={{ margin: 54 }}>
         <HOme />
       </Box>
-    </div>
+    </DataProvider>
   );
 }
 

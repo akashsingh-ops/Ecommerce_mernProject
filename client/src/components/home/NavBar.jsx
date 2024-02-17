@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, Box, styled, Typography } from "@mui/material";
+import { Box, styled, Typography } from "@mui/material";
 import { navData } from "../../constants/data";
 const Component = styled(Box)`
   display: flex;
@@ -18,8 +18,8 @@ const Text = styled(Typography)`
 export const NavBar = () => {
   return (
     <Component>
-      {navData.map((data) => (
-        <Container>
+      {navData.map((data, index) => (
+        <Container key={index}>
           <img src={data.url} style={{ width: 64 }} alt="nav" />
           <Text> {data.text}</Text>
         </Container>
