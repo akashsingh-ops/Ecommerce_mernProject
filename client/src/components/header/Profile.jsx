@@ -1,49 +1,60 @@
 import { useState } from "react";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
-// import { Link } from "react-router-dom";
 import { Typography, Menu, MenuItem, Box, styled } from "@mui/material";
-// import { PowerSettingsNew } from "@mui/icons-material";
 
 const Component = styled(Menu)`
   margin-top: 5px;
+  padding: 0;
 `;
 
 const Logout = styled(Typography)`
   font-size: 14px;
-  margin-left: 20px;
+  margin-left: 10px;
 `;
 
+const LoginButton = styled(Typography)`
+  color: #2874f0;
+
+  background: #ffffff;
+  text-transform: none;
+  padding: 2px 30px 2px 30px;
+  border-radius: 2px;
+  font-weigth: 700;
+  height: 32px;
+  box-shadow: none;
+`;
 export const Profile = ({ account, setAccount }) => {
-  const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
-    setOpen(event.currentTarget);
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setAnchorEl(null);
   };
 
   const logout = () => {
     setAccount("");
+    handleClose(); // Close the menu after logout
   };
 
   return (
     <>
       <Box onClick={handleClick}>
-        <Typography style={{ marginTop: 2 }}>{account}</Typography>
+        <LoginButton style={{ marginTop: 2, cursor: "pointer" }}>
+          {account}
+        </LoginButton>
       </Box>
-      <Component anchorEl={open} open={Boolean(open)} onClose={handleClose}>
-        <Menu
-          anchorEl={open}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{ "aria-labelledby": "basic-button" }}
-        >
-          <MenuItem onClick={handleClose}>
-            <Typography></Typography>
-          </MenuItem>
-        </Menu>
+      <Component
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={logout}>
+          <PowerSettingsNewIcon color="primary" fontSize="small" />
+          <Logout>Logout</Logout>
+        </MenuItem>
       </Component>
     </>
   );

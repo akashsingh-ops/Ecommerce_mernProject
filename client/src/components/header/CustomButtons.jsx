@@ -34,14 +34,14 @@ const Container = styled(Box)`
 
 export const CustomButtons = () => {
   const [open, setOpen] = useState(false);
-  const { account } = useContext(LoginContext);
+  const { account, setAccount } = useContext(LoginContext);
   const openDialog = () => {
     setOpen(true);
   };
   return (
     <Wrapper>
       {account ? (
-        <Profile account={account} />
+        <Profile account={account} setAccount={setAccount} />
       ) : (
         <LoginButton variant="contained" onClick={() => openDialog()}>
           Login
