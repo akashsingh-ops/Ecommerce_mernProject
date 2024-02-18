@@ -6,6 +6,7 @@ import { styled, Box } from "@mui/material";
 import { useEffect } from "react";
 import { getProduct } from "../../redux/actions/productAction";
 import { useDispatch, useSelector } from "react-redux";
+import { Slide } from "./Slide";
 const Container = styled(Box)`
   padding: 10px 10px;
   background: #f2f2f2;
@@ -25,6 +26,7 @@ export const HOme = () => {
 
       <Container>
         <Banner />
+        <Slide products={products} />
       </Container>
     </Fragment>
   );
