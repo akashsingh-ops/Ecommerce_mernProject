@@ -1,3 +1,14 @@
 Redux is a predictable state container for JavaScript apps.
 
 It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test. On top of that, it provides a great developer experience, such as live code editing combined with a time traveling debugger.
+
+
+in react-redux , there is provider 
+
+UseEffect : we can used it as component didmount , as component didupdate and didunmount(useeefct made up of these three life cyle method)
+
+
+---->     in this applications flow is be like<----------
+
+useeffect call-> then getProduct call -> then in productAction the api call axixo get ->the product data get and store in data var,->in same dipatch the data ->GO in prodcutsReducer ,check action.type is succes or fail if succes then return acction.payload in prodcuts
+when payload return then -> in store.js call getRpductReducer and whatever will return store in getRpdocts(we can prodcut obj in redux devtool )

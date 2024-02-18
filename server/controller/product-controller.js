@@ -1,10 +1,11 @@
-import { response } from "express";
 import Product from "../model/product-schema.js";
-export const getProduct = async () => {
+
+export const getProduct = async (req, res) => {
+  // Add 'req' and 'res' parameters
   try {
     const products = await Product.find({});
-    response.status(200).json(products);
+    res.status(200).json(products); // Use 'res' instead of 'response'
   } catch (error) {
-    response.status(500).json({ messsage: error.messsage });
+    res.status(500).json({ message: error.message }); // Use 'res' instead of 'response'
   }
 };
