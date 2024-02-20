@@ -3,6 +3,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { styled, Box, Typography, Button, Divider } from "@mui/material";
 import Countdown from "react-countdown";
+// import { Link } from "react-router-dom";
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -45,7 +46,16 @@ const ViewAllButton = styled(Button)`
   font-weigth: 600;
   font-size: 13px;
 `;
-export const Slide = ({ products }) => {
+const Image = styled("img")({
+  width: "auto",
+  height: 150,
+});
+const Text = styled(Typography)`
+  font-size: 14px;
+  margin-top: 5px;
+`;
+
+export const Slide = ({ products, title, timer }) => {
   const timerURL =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg";
   const renderer = ({ hours, minutes, seconds }) => {
@@ -58,11 +68,15 @@ export const Slide = ({ products }) => {
   return (
     <Component>
       <Deal>
-        <DealText>Deal of the Day</DealText>
-        <Timer>
-          <img src={timerURL} alt="Timer" style={{ width: 24 }} />
-          <Countdown date={Date.now() + 5.04e7} renderer={renderer} />
-        </Timer>
+        <DealText>{title}</DealText>
+
+        {timer && (
+          <Timer>
+            <img src={timerURL} alt="Timer" style={{ width: 24 }} />
+            <Countdown date={Date.now() + 5.04e7} renderer={renderer} />
+          </Timer>
+        )}
+
         <ViewAllButton variant="contained" color="primary">
           View All
         </ViewAllButton>
@@ -81,8 +95,17 @@ export const Slide = ({ products }) => {
         itemClass="carousel-item-padding-40-px"
         containerClass="carousel-container"
       >
-        {products.map((products, index) => (
-          <img key={index} src={products.url} alt="products" />
+        {products.map((product) => (
+          <Box key={product.id} textAlign="center" style={{ padding: "0" }}>
+            <Image src={product.url} />
+            <Text style={{ fontWeight: 600, color: "#212121" }}>
+              {product.title.shortTitle}
+            </Text>
+            <Text style={{ color: "green" }}>{product.discount}</Text>
+            <Text style={{ color: "#212121", opacity: ".6" }}>
+              {product.tagline}
+            </Text>
+          </Box>
         ))}
       </Carousel>
     </Component>

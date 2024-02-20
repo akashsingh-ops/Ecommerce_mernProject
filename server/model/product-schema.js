@@ -4,8 +4,6 @@ import mongoose from "mongoose";
 const productSchema = new mongoose.Schema({
   id: {
     type: String,
-    required: true,
-    unique: true,
   },
   url: String,
   detailUrl: String,
@@ -13,6 +11,7 @@ const productSchema = new mongoose.Schema({
   price: Object,
   quantity: Number,
   description: String,
+  discount: String,
   tagline: String,
 });
 // databses is mongoDB and also create databse (or collection) inside mongodb

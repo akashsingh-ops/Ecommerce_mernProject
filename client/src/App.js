@@ -7,7 +7,7 @@ function App() {
   return (
     <DataProvider>
       <Header />
-      <Box style={{ margin: 54 }}>
+      <Box style={{ margin: 10 }}>
         <HOme />
       </Box>
     </DataProvider>
