@@ -33,7 +33,7 @@ export const MidSlide = ({ products, title, timer }) => {
         <Slide products={products} title={title} timer={timer} />
       </LeftComponent>
       <RightComponent>
-        <img src={adURL} alt="ADD IMG" style={{ width: 200, height: 252 }} />
+        <img src={adURL} alt="ADD IMG" style={{ width: 200, height: 286 }} />
       </RightComponent>
     </Component>
   );

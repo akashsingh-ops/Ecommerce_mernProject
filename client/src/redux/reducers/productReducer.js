@@ -13,3 +13,22 @@ export const getProductsReducer = (state = { products: [] }, action) => {
       return state;
   }
 };
+
+export const getProductDetailsReducer = (state = { product: {} }, action) => {
+  switch (action.type) {
+    case actionType.GET_PRODUCTS_DEATAILS_REQUEST:
+      return { laoding: true };
+
+    case actionType.GET_PRODUCTS_DEATAILS_SUCCESS:
+      return { laoding: false, product: action.payload };
+
+    case actionType.GET_PRODUCTS_DEATAILS_FAIL:
+      return { laoding: false, error: action.payload };
+
+    case actionType.GET_PRODUCTS_DEATAILS_RESET:
+      return { product: {} };
+
+    default:
+      return state;
+  }
+};

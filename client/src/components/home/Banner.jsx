@@ -21,10 +21,15 @@ const responsive = {
   },
 };
 
-const Image = styled("img")({
+const Image = styled("img")(({ theme }) => ({
   width: "100%",
   height: 230,
-});
+
+  [theme.breakpoints.down("md")]: {
+    ObjectFit: "cover",
+    height: 180,
+  },
+}));
 export const Banner = () => {
   return (
     <Carousel

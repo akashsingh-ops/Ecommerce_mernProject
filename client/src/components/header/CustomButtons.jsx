@@ -6,17 +6,27 @@ import { useState, useContext } from "react";
 import { Profile } from "./Profile";
 // compoennt
 import { LoginDialog } from "../login/LoginDialog";
-const Wrapper = styled(Box)`
-  display: flex;
-  margin: 0 3% 0 auto;
-  & > button,
-  & > p,
-  & > div {
-    margin-right: 40px;
-    font-size: 16px;
-    align-items: center;
-  }
-`;
+const Wrapper = styled(Box)(({ theme }) => ({
+  margin: "0 3% 0 auto",
+  display: "flex",
+  "& > *": {
+    marginRight: "40px !important",
+    textDecoration: "none",
+    color: "#FFFFFF",
+    fontSize: 12,
+    alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      color: "#2874f0",
+      alignItems: "center",
+      display: "flex",
+      flexDirection: "column",
+      marginTop: 10,
+    },
+  },
+  [theme.breakpoints.down("sm")]: {
+    display: "block",
+  },
+}));
 const LoginButton = styled(Button)`
   color: #2874f0;
 
@@ -28,9 +38,12 @@ const LoginButton = styled(Button)`
   height: 32px;
   box-shadow: none;
 `;
-const Container = styled(Box)`
-  display: flex;
-`;
+const Container = styled(Box)(({ theme }) => ({
+  display: "flex",
+  [theme.breakpoints.down("sm")]: {
+    display: "block",
+  },
+}));
 
 export const CustomButtons = () => {
   const [open, setOpen] = useState(false);
