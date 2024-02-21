@@ -2,7 +2,10 @@ import React from "react";
 import { Box, styled, Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FlashOnIcon from "@mui/icons-material/FlashOn";
-
+import { useNavigate } from "react-router-dom";
+import { UseDispatch, useDispatch } from "react-redux";
+import { useState } from "react";
+import { addToCart } from "../../redux/actions/cartAction";
 const LeftContainer = styled(Box)(({ theme }) => ({
   minWidth: "40%",
   padding: "40px 0 0 80px",
@@ -18,9 +21,9 @@ const Image = styled("img")({
 });
 
 const StyledButton = styled(Button)(({ theme }) => ({
-  width: " 48%",
+  width: "48%",
   borderRadius: "2px",
-  height: "50",
+  height: "50px", // Add "px" here
   color: "#fff",
   [theme.breakpoints.down("lg")]: {
     width: "46%",
@@ -28,6 +31,15 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 export const ActionItem = ({ product }) => {
+  const dispatch = useDispatch();
+  const [quantity, setquantity] = useState(1);
+  const { id } = product;
+  const navigate = useNavigate();
+  const addItemToCart = () => {
+    dispatch(addToCart(id, quantity));
+    navigate("/cart");
+  };
+
   return (
     <LeftContainer>
       <Box
@@ -42,6 +54,7 @@ export const ActionItem = ({ product }) => {
       <StyledButton
         variant="contained"
         style={{ marginRight: 10, background: "#ff9f00" }}
+        onClick={() => addItemToCart()}
       >
         <ShoppingCartIcon />
         Add to cart
